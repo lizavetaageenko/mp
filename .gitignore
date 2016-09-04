@@ -6,6 +6,7 @@ node_modules
 # production
 build
 
-# misc
+# miscs
+.idea
 .DS_Store
 npm-debug.log
