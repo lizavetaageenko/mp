@@ -8,6 +8,7 @@ body.appendChild(list);
 
 simpsons.forEach((heroName) => {
     const heroListItem = document.createElement('li');
+
     list.appendChild(heroListItem);
 
     heroListItem.innerHTML = heroName;

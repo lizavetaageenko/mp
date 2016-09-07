@@ -1,20 +1,30 @@
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const path = require('path');
 
 module.exports = {
-    devtool: 'source-map',
-    entry: './src/app.js',
+    entry: {
+        app: [
+            path.join(path.resolve('src'), 'app')
+        ]
+    },
     output: {
-        path: './build',
-        filename: 'app.bundle.js'
+        path: path.resolve('build'),
+        filename: '/app.bundle.js'
     },
     module: {
         loaders: [{
             test: /\.js$/,
-            exclude: /node_modules/,
+            include: path.resolve('src'),
             loader: 'babel-loader'
         }]
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            inject: true,
+            template: path.resolve('index.html')
+        }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 screw_ie8: true,

@@ -3,10 +3,10 @@
 ## Features
 
 - [x] Webpack
-- [ ] Local Server
+- [x] Local Server
 - [x] Source Maps
 - [ ] Live reload
-- [ ] Development/Production environments
+- [x] Development/Production environments
 - [x] Concatenation and minification on production
 - [x] ES2015
 - [ ] CSS-preprocessor (SASS)
