@@ -6,6 +6,7 @@ module.exports = {
     devtool: 'source-map',
     entry: {
         app: [
+            require.resolve('webpack-dev-server/client') + '?/',
             path.join(path.resolve('src'), 'app')
         ]
     },

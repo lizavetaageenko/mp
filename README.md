@@ -5,7 +5,7 @@
 - [x] Webpack
 - [x] Local Server
 - [x] Source Maps
-- [ ] Live reload
+- [x] Live reload
 - [x] Development/Production environments
 - [x] Concatenation and minification on production
 - [x] ES2015

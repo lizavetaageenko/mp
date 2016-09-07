@@ -13,7 +13,6 @@ compiler.plugin('done', function(stats) {
 });
 
 var server = new WebpackDevServer(compiler, {
-    hot: true,
     publicPath: config.output.publicPath,
     quiet: true,
     watchOptions: {
