@@ -40,16 +40,16 @@ $ npm test
 To get coverage, run:
 
 ```bash
-$  npm test -- --coverage
+$ npm test -- --coverage
 ```
 
 To run all tests in TDD mode, run:
 ```bash
-$  npm test -- --watch
+$ npm test -- --watch
 
 # With coverage
 
-$  npm test --  --coverage --watch
+$ npm test --  --coverage --watch
 ```
 
 Then press `a` to run all tests or `o` to only run tests related to changed files. Just follow the instructions.
