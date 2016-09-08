@@ -17,10 +17,15 @@ module.exports = {
         filename: '/app.bundle.js'
     },
     module: {
+        preLoaders: [{
+            test: /\.js$/,
+            include: path.resolve('src'),
+            loader: 'eslint'
+        }],
         loaders: [{
             test: /\.js$/,
             include: path.resolve('src'),
-            loader: 'babel-loader'
+            loader: 'babel'
         }, {
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract(
@@ -36,6 +41,14 @@ module.exports = {
             }
         }]
     },
+    eslint: {
+        configFile: 'configs/eslint.js',
+        useEslintrc: false,
+        emitError: true,
+        emitWarning: true,
+        failOnError: true,
+        failOnWarning: true
+    },
     postcss: function() {
         return [
             autoprefixer({
@@ -49,6 +62,7 @@ module.exports = {
         ];
     },
     plugins: [
+        new webpack.NoErrorsPlugin(),
         new CleanWebpackPlugin(['build'], {
             root: path.resolve('./'),
             verbose: true,

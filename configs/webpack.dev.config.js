@@ -18,10 +18,15 @@ module.exports = {
         filename: 'build/app.bundle.js'
     },
     module: {
+        preLoaders: [{
+            test: /\.js$/,
+            include: path.resolve('src'),
+            loader: 'eslint'
+        }],
         loaders: [{
             test: /\.js$/,
             include: path.resolve('src'),
-            loader: 'babel-loader'
+            loader: 'babel'
         }, {
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract(
@@ -36,6 +41,10 @@ module.exports = {
                 name: 'static/media/[name].[hash:8].[ext]'
             }
         }]
+    },
+    eslint: {
+        configFile: 'configs/eslint.js',
+        useEslintrc: false
     },
     postcss: function() {
         return [
