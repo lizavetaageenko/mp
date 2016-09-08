@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const path = require('path');
 
@@ -23,7 +24,7 @@ module.exports = {
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract(
                 'style', // The backup style loader
-                'css?sourceMap!resolve-url?sourceMap!sass?sourceMap'
+                'css?sourceMap!postcss?sourceMap!resolve-url?sourceMap!sass?sourceMap'
             )
         }, {
             test: /\.(jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
@@ -33,6 +34,18 @@ module.exports = {
                 name: 'static/media/[name].[hash:8].[ext]'
             }
         }]
+    },
+    postcss: function() {
+        return [
+            autoprefixer({
+                browsers: [
+                    '>1%',
+                    'last 2 versions',
+                    'Firefox ESR',
+                    'not ie < 9'
+                ]
+            }),
+        ];
     },
     plugins: [
         new HtmlWebpackPlugin({

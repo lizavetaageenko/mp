@@ -10,6 +10,7 @@
 - [x] Concatenation and minification on production
 - [x] ES2015
 - [x] CSS-preprocessor (SASS)
+- [x] Autoprefixer
 - [ ] Static code analysis (ESLint)
 - [ ] Unit tests, TDD
 - [ ] Test Coverage
