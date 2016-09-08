@@ -11,7 +11,7 @@
 - [x] ES2015
 - [x] CSS-preprocessor (SASS)
 - [x] Autoprefixer
-- [ ] Static code analysis (ESLint)
+- [x] Static code analysis (ESLint)
 - [ ] Unit tests, TDD
 - [ ] Test Coverage
 - [ ] Git hooks: Lint rules, tests and coverage
@@ -19,3 +19,7 @@
 ## SASS
 
 To import `.sass` file add `import './filename.scss';` to your `js` file
+
+## ESLint
+
+[Airbnb JavaScript Style](https://github.com/airbnb/javascript) is using.
