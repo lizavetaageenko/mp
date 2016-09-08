@@ -1,15 +1,11 @@
-import simpsons from './one-more.js';
+import './app.scss';
+
+import simpsons from './simpsons/simpsons';
+import starks from './starks/starks';
+
+import renderList from './render-list';
 
 const body = document.getElementsByTagName('body')[0];
 
-const list = document.createElement('ul');
-
-body.appendChild(list);
-
-simpsons.forEach((heroName) => {
-    const heroListItem = document.createElement('li');
-
-    list.appendChild(heroListItem);
-
-    heroListItem.innerHTML = heroName;
-});
+renderList(simpsons, 'Simpsons', 'simpsons', body);
+renderList(starks, 'Starks', 'starks', body);
