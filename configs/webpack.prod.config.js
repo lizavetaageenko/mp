@@ -25,7 +25,8 @@ module.exports = {
         loaders: [{
             test: /\.js$/,
             include: path.resolve('src'),
-            loader: 'babel'
+            loader: 'babel',
+            query: require('./babel.prod')
         }, {
             test: /\.scss$/,
             loader: ExtractTextPlugin.extract(

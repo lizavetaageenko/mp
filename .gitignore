@@ -6,6 +6,9 @@ node_modules
 # production
 build
 
+# testing
+coverage
+
 # miscs
 .idea
 .DS_Store
