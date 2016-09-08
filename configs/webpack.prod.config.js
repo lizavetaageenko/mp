@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const path = require('path');
@@ -48,6 +49,11 @@ module.exports = {
         ];
     },
     plugins: [
+        new CleanWebpackPlugin(['build'], {
+            root: path.resolve('./'),
+            verbose: true,
+            dry: false
+        }),
         new HtmlWebpackPlugin({
             inject: true,
             template: path.resolve('index.html'),
