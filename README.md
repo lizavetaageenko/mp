@@ -22,4 +22,8 @@ To import `.sass` file add `import './filename.scss';` to your `js` file
 
 ## ESLint
 
-[Airbnb JavaScript Style](https://github.com/airbnb/javascript) is using.
+Style Guide based on [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
+
+Except few changes:
+
+* indent: 4 spaces
