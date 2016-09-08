@@ -53,3 +53,7 @@ $ npm test --  --coverage --watch
 ```
 
 Then press `a` to run all tests or `o` to only run tests related to changed files. Just follow the instructions.
+
+### Coverage
+
+Coverage should be more than `80%`.
