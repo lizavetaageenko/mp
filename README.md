@@ -14,7 +14,7 @@
 - [x] Static code analysis (ESLint)
 - [x] Unit tests, TDD
 - [x] Test Coverage
-- [ ] Git hooks: Lint rules, tests and coverage
+- [x] Git hooks: Lint rules, tests and coverage
 
 ## SASS
 
