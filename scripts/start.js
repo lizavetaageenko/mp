@@ -1,23 +1,55 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const detect = require('detect-port');
+const chalk = require('chalk');
+const prompt = require('./utilities/prompt');
 
 const config = require('../configs/webpack.dev.config.js');
-const compiler = webpack(config);
 
-compiler.plugin('invalid', function() {
-    console.log('Compiling...');
-});
+const defaultPort = 3333;
 
-compiler.plugin('done', function(stats) {
-    console.log('Done!');
-});
+function run(port) {
+    const compiler = webpack(config);
 
-var server = new WebpackDevServer(compiler, {
-    publicPath: config.output.publicPath,
-    quiet: true,
-    watchOptions: {
-        ignored: /node_modules/
+    compiler.plugin('invalid', function() {
+        console.log('Compiling...');
+    });
+
+    compiler.plugin('done', function(stats) {
+        console.log('Done!');
+    });
+
+    var server = new WebpackDevServer(compiler, {
+        publicPath: config.output.publicPath,
+        quiet: true,
+        watchOptions: {
+            ignored: /node_modules/
+        }
+    });
+
+    server.listen(port, (err, result) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        console.log(chalk.cyan('Starting the development server...'));
+        console.log(chalk.green('Open http://localhost:' + port));
+    });
+}
+
+detect(defaultPort).then(port => {
+    if (port === defaultPort) {
+        run(port);
+        return;
     }
-});
 
-server.listen(8080);
+    var question =
+        chalk.yellow('Something is already running on port ' + defaultPort + '.') +
+        '\n\nWould you like to run the app on another port instead: ' + port + '?';
+
+    prompt(question, true).then(shouldChangePort => {
+        if (shouldChangePort) {
+            run(port);
+        }
+    });
+});
