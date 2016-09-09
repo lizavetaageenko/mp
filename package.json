@@ -74,6 +74,6 @@
     }
   },
   "pre-commit": {
-    "run": ["precommit:test"]
+    "run": ["precommit:test", "build"]
   }
 }

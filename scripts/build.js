@@ -17,6 +17,8 @@ webpack(config).run((err, stats) => {
         jsonStats.errors.forEach((error) => {
             console.error(error);
         });
+
+        process.exit(1);
     }
 
     if (jsonStats.warnings.length) {
