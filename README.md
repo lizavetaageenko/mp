@@ -30,7 +30,7 @@ Except few changes:
 
 ## Unit tests
 
-[Jest](https://facebook.github.io/jest/) is using for unit testing.
+[Jest](https://facebook.github.io/jest/) is used for unit testing.
 
 To run all tests one time, run:
 ```bash
