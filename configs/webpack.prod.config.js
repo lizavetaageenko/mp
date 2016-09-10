@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const sassLintPlugin = require('sasslint-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const path = require('path');
@@ -84,6 +85,16 @@ module.exports = {
                 screw_ie8: true
             }
         }),
-        new ExtractTextPlugin('/styles.css')
+        new ExtractTextPlugin('/styles.css'),
+        new sassLintPlugin({
+            configFile: path.resolve('configs/scss-lint.yml'),
+            glob: 'src/**/*.s?(a|c)ss',
+            ignorePlugins: [
+                'extract-text-webpack-plugin',
+                'html-webpack-plugin'
+            ],
+            failOnWarning: false,
+            failOnError: false
+        })
     ]
 };

@@ -1,4 +1,7 @@
+@import "../common/variables";
+
 .simpsons {
-  background-color: #fdc649;
-  color: #ff2e28;
+  background-color: $yellow;
+  color: $red;
+  border: 0;
 }

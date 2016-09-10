@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const sassLintPlugin = require('sasslint-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
@@ -65,6 +66,14 @@ module.exports = {
             template: path.resolve('index.html'),
             favicon: path.resolve('favicon.ico')
         }),
-        new ExtractTextPlugin('build/styles.css')
+        new ExtractTextPlugin('build/styles.css'),
+        new sassLintPlugin({
+            configFile: path.resolve('configs/scss-lint.yml'),
+            glob: 'src/**/*.s?(a|c)ss',
+            ignorePlugins: [
+                'extract-text-webpack-plugin',
+                'html-webpack-plugin'
+            ]
+        })
     ]
 };

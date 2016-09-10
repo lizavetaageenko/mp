@@ -46,7 +46,9 @@
     "node-sass": "^3.9.3",
     "postcss-loader": "^0.13.0",
     "resolve-url-loader": "^1.6.0",
+    "sass-lint": "^1.9.1",
     "sass-loader": "^4.0.2",
+    "sasslint-webpack-plugin": "^1.0.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.1"

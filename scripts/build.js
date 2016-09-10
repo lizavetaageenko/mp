@@ -27,9 +27,11 @@ webpack(config).run((err, stats) => {
         jsonStats.warnings.forEach((warning) => {
             console.error(warning);
         });
+
+        process.exit(1);
     }
 
-    if (!err && !jsonStats.errors.length) {
+    if (!err && !jsonStats.errors.length && !jsonStats.warnings.length) {
         console.log();
         console.log(chalk.green('Compiled successfully.'));
     }
