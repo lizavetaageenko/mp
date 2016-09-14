@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const sassLintPlugin = require('sasslint-webpack-plugin');
+const WatchMissingNodeModulesPlugin = require('../scripts/utilities/WatchMissingNodeModulesPlugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
@@ -74,6 +75,7 @@ module.exports = {
                 'extract-text-webpack-plugin',
                 'html-webpack-plugin'
             ]
-        })
+        }),
+        new WatchMissingNodeModulesPlugin(path.resolve('node_modules'))
     ]
 };
