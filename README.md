@@ -15,6 +15,19 @@
 - [x] Unit tests, TDD
 - [x] Test Coverage
 - [x] Git hooks: Lint rules, tests and coverage
+- [x] Express Back End
+
+## FE
+
+```bash
+$ npm test
+```
+
+## BE
+
+```bash
+$ npm run start:server
+```
 
 ## SASS
 

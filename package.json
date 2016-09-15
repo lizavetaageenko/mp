@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./scripts/start.js",
+    "start:server": "node ./src/server.js",
     "build": "node ./scripts/build.js",
     "test": "jest",
     "precommit:test": "jest --coverage --bail"
@@ -82,5 +83,9 @@
       "precommit:test",
       "build"
     ]
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-session": "^1.14.1"
   }
 }
