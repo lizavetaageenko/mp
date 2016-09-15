@@ -2,7 +2,8 @@
 
 ## Features
 
-- [x] Webpack
+- [x] Webpack to bundle FE
+- [ ] Webpack to bundle BE
 - [x] Local Server
 - [x] Source Maps
 - [x] Live reload
@@ -16,6 +17,11 @@
 - [x] Test Coverage
 - [x] Git hooks: Lint rules, tests and coverage
 - [x] Express Back End
+- [ ] Watch and reload BE
+
+## TODO
+
+- [ ] Extract common configs into separate file(s)
 
 ## FE
 
