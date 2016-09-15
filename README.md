@@ -17,7 +17,7 @@
 - [x] Test Coverage
 - [x] Git hooks: Lint rules, tests and coverage
 - [x] Express Back End
-- [ ] Watch and reload BE
+- [ ] Watch and reload BE (PM2)
 
 ## TODO
 
