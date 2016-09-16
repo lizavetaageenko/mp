@@ -1,3 +1,4 @@
+import io from 'socket.io-client';
 import './app.scss';
 
 import simpsons from './simpsons/simpsons';
@@ -7,6 +8,11 @@ import initGame from './game/game';
 import renderList from './common/render-list';
 
 const body = document.getElementsByTagName('body')[0];
+const socket = io('http://localhost:3332');
+
+socket.on('news', () => {
+    socket.emit('my other event', { my: 'data' });
+});
 
 initGame()
     .then(res => res.json())
