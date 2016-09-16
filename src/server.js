@@ -3,12 +3,13 @@ const session = require('express-session');
 const app = express();
 const port = 3332;
 
+app.set('trust proxy', 1);
 app.use(session({
     secret: `don't look, this is a secret`,
     resave: false,
     saveUninitialized: true,
     cookie: {
-        httpOnly: true,
+        httpOnly: false,
         secure: false
     }
 }));
@@ -25,11 +26,15 @@ function createNewGame(userSessionId) {
     };
 }
 
-app.get('/', function (req, res) {
+app.get('/game', function (req, res) {
     const session = req.session;
     console.log('New request:');
     console.log(session.id);
     res.send(createNewGame(session.id));
+});
+
+app.get('/test', function (req, res) {
+    res.send({text: 'Test!!!'});
 });
 
 app.listen(port, function () {

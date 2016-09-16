@@ -24,6 +24,19 @@ function run(port) {
         quiet: true,
         watchOptions: {
             ignored: /node_modules/
+        },
+        proxy: {
+            '/api': {
+                'target': {
+                    'host': 'localhost',
+                    'protocol': 'http:',
+                    'port': 3332
+                },
+                ignorePath: false,
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: {'^/api' : '/'}
+            }
         }
     });
 
