@@ -31,7 +31,10 @@ module.exports = {
     },
 
     rules: {
-        indent: ['error', 4],
-        'linebreak-style': 0
+        'indent': ['error', 4],
+        'linebreak-style': 0,
+        'comma-dangle': 0,
+        'no-use-before-define': ['error', {'functions': false}],
+        'no-param-reassign': ['error', {'props': false}]
     }
 };

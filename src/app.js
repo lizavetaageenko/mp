@@ -1,26 +1,40 @@
 import io from 'socket.io-client';
-import './app.scss';
 
-import simpsons from './simpsons/simpsons';
-import starks from './starks/starks';
-import initGame from './game/game';
+const socket = io('ws://localhost:3332');
 
-import renderList from './common/render-list';
+const startNewGameSection = document.getElementById('start-new-game');
+const gameSection = document.getElementById('game');
 
-const body = document.getElementsByTagName('body')[0];
-const socket = io('http://localhost:3332');
+function showGameSection(data) {
+    gameSection.innerHTML = `User: ${data.username}`;
+    gameSection.classList.remove('hidden');
+    startNewGameSection.classList.add('hidden');
+}
 
-socket.on('news', () => {
-    socket.emit('my other event', { my: 'data' });
-});
-
-initGame()
-    .then(res => res.json())
-    .then((game) => {
-        const container = document.createElement('pre');
-        container.innerHTML = JSON.stringify(game, null, 4);
-        body.appendChild(container);
+fetch('/api/game-status', {
+    method: 'GET',
+    credentials: 'include',
+})
+    .then(response => response.json())
+    .then((response) => {
+        if (response && response.game) {
+            showGameSection(response);
+        } else {
+            startNewGameSection.classList.remove('hidden');
+        }
     });
 
-renderList(simpsons, 'Simpsons', 'simpsons', body);
-renderList(starks, 'Starks', 'starks', body);
+socket.on('game-created', (data) => {
+    if (data && data.username) {
+        showGameSection(data);
+    }
+});
+
+const newGameButton = document.getElementById('new-game');
+const username = document.getElementById('user-name');
+
+newGameButton.addEventListener('click', () => {
+    socket.emit('new-game', {
+        username: username.value
+    });
+});

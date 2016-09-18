@@ -1,10 +1,17 @@
-exports.init = function (app) {
-    var io = require('socket.io')(app);
+const socketio = require('socket.io');
+const expressSocketioSession = require('express-socket.io-session');
+const GameController = require('../game/game.ctrl');
 
-    io.on('connection', function (socket) {
-        socket.emit('news', { hello: 'world' });
-        socket.on('my other event', function (data) {
-            console.log(data);
-        });
+exports.init = function (app, session) {
+    const io = socketio(app);
+
+    io.use(expressSocketioSession(session, {
+        autoSave: true
+    }));
+
+    io.on('connection', (socket) => {
+        socket.emit('connected');
+
+        GameController.addEvents(socket);
     });
 };

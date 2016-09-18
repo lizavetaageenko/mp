@@ -35,7 +35,8 @@ function run(port) {
                 ignorePath: false,
                 changeOrigin: true,
                 secure: false,
-                pathRewrite: {'^/api' : '/'}
+                pathRewrite: {'^/api' : '/'},
+                ws: true
             }
         }
     });
