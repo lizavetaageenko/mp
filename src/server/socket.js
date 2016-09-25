@@ -1,6 +1,6 @@
 const socketio = require('socket.io');
 const expressSocketioSession = require('express-socket.io-session');
-const GameController = require('../game/game.ctrl');
+const GameController = require('./game/game.ctrl');
 
 exports.init = function (app, session) {
     const io = socketio(app);

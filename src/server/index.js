@@ -1,8 +1,8 @@
 const express = require('express');
 const expressSession = require('express-session');
 const MongoStore = require('connect-mongo')(expressSession);
-const socket = require('./server/socket');
-const db = require('./server/db');
+const socket = require('./socket');
+const db = require('./db');
 const gameRouter = require('./game/game.router');
 
 const port = 3332;
