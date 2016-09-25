@@ -1,9 +1,8 @@
 # MP project
 
-## Features
+## Dev Env Features
 
 - [x] Webpack to bundle FE
-- [ ] Webpack to bundle BE
 - [x] Local Server
 - [x] Source Maps
 - [x] Live reload
@@ -16,12 +15,20 @@
 - [x] Unit tests, TDD
 - [x] Test Coverage
 - [x] Git hooks: Lint rules, tests and coverage
-- [x] Express Back End
+- [ ] Webpack to bundle BE
 - [ ] Watch and reload BE (PM2)
 
-## TODO
+## App TODO list
 
-- [ ] Extract common configs into separate file(s)
+- [ ] Give app the coolest name ever
+- [x] [BE] Create a new game
+- [ ] [BE] Connect to created game
+- [ ] [BE] Update `game.status` on 'start game'
+- [ ] [BE] Randomly pick 10 locations and set 1 to `game.location`
+- [ ] [BE] Randomly choose a spy
+- [ ] [BE] Start timer on 'start game'
+- [ ] [BE] Emit 'game started' with updated game data
+- [ ] To be continued ...
 
 ## FE
 
