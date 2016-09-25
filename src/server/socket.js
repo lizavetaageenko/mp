@@ -12,6 +12,6 @@ exports.init = function (app, session) {
     io.on('connection', (socket) => {
         socket.emit('connected');
 
-        GameController.addEvents(socket);
+        GameController.addEvents(socket, io);
     });
 };

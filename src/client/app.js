@@ -6,7 +6,7 @@ const startNewGameSection = document.getElementById('start-new-game');
 const gameSection = document.getElementById('game');
 
 function showGameSection(data) {
-    gameSection.innerHTML = `User: ${data.username}`;
+    gameSection.innerHTML = `Game: ${data._id || data.game._id}`;
     gameSection.classList.remove('hidden');
     startNewGameSection.classList.add('hidden');
 }
@@ -24,17 +24,23 @@ fetch('/api/game-status', {
         }
     });
 
-socket.on('game-created', (data) => {
-    if (data && data.username) {
-        showGameSection(data);
-    }
-});
+socket.on('game-created', showGameSection);
+socket.on('new-players', showGameSection);
 
 const newGameButton = document.getElementById('new-game');
-const username = document.getElementById('user-name');
+const connectToGameButton = document.getElementById('connect-to-game');
+const username = document.getElementById('username');
+const gameId = document.getElementById('game-id');
 
 newGameButton.addEventListener('click', () => {
     socket.emit('new-game', {
         username: username.value
+    });
+});
+
+connectToGameButton.addEventListener('click', () => {
+    socket.emit('connect-to-game', {
+        username: username.value,
+        gameId: gameId.value
     });
 });

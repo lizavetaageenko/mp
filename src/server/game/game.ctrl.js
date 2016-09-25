@@ -1,6 +1,9 @@
 const GameModel = require('./game.model');
+var appIO;
 
-function addEvents(socket) {
+function addEvents(socket, io) {
+    appIO = io;
+
     socket.on('new-game', (data) => {
         createNewGame(socket, data);
     });
@@ -12,18 +15,13 @@ function addEvents(socket) {
 
 function getGameStatus(req, res) {
     GameModel.findOne({
-        players: req.session.id
-    })
+            players: req.session.id
+        })
         .exec()
         .then((game) => {
-            const sessionData = {};
-
-            if (game) {
-                sessionData.game = game;
-                sessionData.username = req.session.username;
-            }
-
-            res.send(sessionData);
+            res.send({
+                game
+            });
         })
         .catch((error) => {
             console.log(error);
@@ -31,31 +29,58 @@ function getGameStatus(req, res) {
 }
 
 function createNewGame(socket, userData) {
-    const hostId = socket.handshake.session.id;
-
     if (!userData.username) {
         socket.emit('app-error', 'Username is required to start a game');
     } else {
-        socket.handshake.session.username = userData.username;
-
+        const hostId = socket.handshake.session.id;
         const newGame = new GameModel({
             host: hostId,
-            players: [hostId]
+            players: [{
+                id: hostId,
+                username: userData.username
+            }]
         });
+
+        socket.handshake.session.username = userData.username;
 
         newGame
             .save()
             .then((game) => {
-                socket.emit('game-created', {
-                    username: userData.username,
-                    game
-                });
+                socket.join(game._id);
+                socket.emit('game-created', game);
+            })
+            .catch((error) => {
+                console.log(error);
             });
     }
 }
 
-function connectToGame() {
+function connectToGame(socket, data) {
+    if (!data.username) {
+        socket.emit('app-error', 'Username is required to start a game');
+    } else {
+        const playerId = socket.handshake.session.id;
 
+        socket.handshake.session.username = data.username;
+
+        GameModel.findById(data.gameId)
+            .exec()
+            .then((game) => {
+                game.players.push({
+                    id: playerId,
+                    username: data.username
+                });
+
+                return game.save();
+            })
+            .then((game) => {
+                socket.join(game._id);
+                appIO.to(game._id).emit('new-players', game);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 }
 
 module.exports = {
