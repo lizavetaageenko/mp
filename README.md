@@ -30,10 +30,13 @@
 - [ ] [BE] Emit 'game started' with updated game data
 - [ ] To be continued ...
 
+## Known issues
+- [ ] Player socket is not added to game room after get game-status
+
 ## FE
 
 ```bash
-$ npm test
+$ npm start
 ```
 
 ## BE
