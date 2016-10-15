@@ -1,4 +1,5 @@
 const GameModel = require('./game.model');
+const playerCtrl = require('../player/player.ctrl');
 var appIO;
 
 function addEvents(socket, io) {
@@ -15,72 +16,59 @@ function addEvents(socket, io) {
 
 function getGameStatus(req, res) {
     GameModel.findOne({
-            players: req.session.id
+            players: req.session.playerId
         })
+        .populate('host players')
         .exec()
         .then((game) => {
-            res.send({
-                game
-            });
+            res.send({game});
         })
-        .catch((error) => {
-            console.log(error);
-        });
+        .catch(handleError);
 }
 
 function createNewGame(socket, userData) {
-    if (!userData.username) {
-        socket.emit('app-error', 'Username is required to start a game');
-    } else {
-        const hostId = socket.handshake.session.id;
-        const newGame = new GameModel({
-            host: hostId,
-            players: [{
-                id: hostId,
-                username: userData.username
-            }]
-        });
-
-        socket.handshake.session.username = userData.username;
-
-        newGame
-            .save()
-            .then((game) => {
-                socket.join(game._id);
-                socket.emit('game-created', game);
-            })
-            .catch((error) => {
-                console.log(error);
+    playerCtrl.createNewPlayer(socket, userData.username)
+        .then((player) => {
+            const newGame = new GameModel({
+                host: player._id,
+                players: [player._id]
             });
-    }
+
+            return newGame.save();
+        })
+        .then(populatePlayers)
+        .then((game) => {
+            socket.join(game._id);
+            socket.emit('game-created', game);
+        })
+        .catch(handleError);
 }
 
 function connectToGame(socket, data) {
-    if (!data.username) {
-        socket.emit('app-error', 'Username is required to start a game');
-    } else {
-        const playerId = socket.handshake.session.id;
+    Promise.all([
+        GameModel.findById(data.gameId).exec(),
+        playerCtrl.createNewPlayer(socket, data.username)
+    ])
+        .then((promises) => {
+            promises[0].players.push(promises[1]._id);
 
-        socket.handshake.session.username = data.username;
+            return promises[0].save();
+        })
+        .then(populatePlayers)
+        .then((game) => {
+            socket.join(game._id);
+            appIO.to(game._id).emit('new-players', game);
+        })
+        .catch(handleError);
+}
 
-        GameModel.findById(data.gameId)
-            .exec()
-            .then((game) => {
-                game.players.push({
-                    id: playerId,
-                    username: data.username
-                });
+function populatePlayers(game) {
+    return game.populate('host players')
+        .execPopulate();
+}
 
-                return game.save();
-            })
-            .then((game) => {
-                socket.join(game._id);
-                appIO.to(game._id).emit('new-players', game);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+function handleError(error) {
+    console.log(error);
 }
 
 module.exports = {

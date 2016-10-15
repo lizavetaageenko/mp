@@ -8,18 +8,21 @@ const GameSchema = new Schema({
         enum: ['NEW', 'IN_PROGRESS', 'COMPLETED']
     },
     host: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
         required: true
     },
     players: [{
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
         required: true
     }],
     location: {
         type: String
     },
     spy: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'Player'
     },
     resolution: {
         type: String,

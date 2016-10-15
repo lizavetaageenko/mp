@@ -22,7 +22,7 @@
 
 - [ ] Give app the coolest name ever
 - [x] [BE] Create a new game
-- [ ] [BE] Connect to created game
+- [x] [BE] Connect to created game
 - [ ] [BE] Update `game.status` on 'start game'
 - [ ] [BE] Randomly pick 10 locations and set 1 to `game.location`
 - [ ] [BE] Randomly choose a spy
