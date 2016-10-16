@@ -4,6 +4,7 @@ const MongoStore = require('connect-mongo')(expressSession);
 const socket = require('./socket');
 const db = require('./db');
 const gameRouter = require('./game/game.router');
+const locationCtrl = require('./location/location.ctrl');
 
 const port = 3332;
 const app = express();
@@ -31,3 +32,4 @@ const server = app.listen(port, () => {
 
 socket.init(server, session);
 gameRouter.init(app);
+locationCtrl.populateDB();

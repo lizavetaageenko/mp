@@ -1,21 +1,23 @@
 const GameModel = require('./game.model');
 const playerCtrl = require('../player/player.ctrl');
-var appIO;
 
 function addEvents(socket, io) {
-    appIO = io;
-
     socket.on('new-game', (data) => {
         createNewGame(socket, data);
     });
 
     socket.on('connect-to-game', (data) => {
-        connectToGame(socket, data);
+        connectToGame(socket, io, data);
+    });
+
+    socket.on('start-game', () => {
+        startGame(socket, io);
     });
 }
 
 function getGameStatus(req, res) {
-    GameModel.findOne({
+    GameModel
+        .findOne({
             players: req.session.playerId
         })
         .populate('host players')
@@ -27,7 +29,8 @@ function getGameStatus(req, res) {
 }
 
 function createNewGame(socket, userData) {
-    playerCtrl.createNewPlayer(socket, userData.username)
+    playerCtrl
+        .createNewPlayer(socket, userData.username)
         .then((player) => {
             const newGame = new GameModel({
                 host: player._id,
@@ -44,11 +47,12 @@ function createNewGame(socket, userData) {
         .catch(handleError);
 }
 
-function connectToGame(socket, data) {
-    Promise.all([
-        GameModel.findById(data.gameId).exec(),
-        playerCtrl.createNewPlayer(socket, data.username)
-    ])
+function connectToGame(socket, io, data) {
+    Promise
+        .all([
+            GameModel.findById(data.gameId).exec(),
+            playerCtrl.createNewPlayer(socket, data.username)
+        ])
         .then((promises) => {
             promises[0].players.push(promises[1]._id);
 
@@ -57,14 +61,38 @@ function connectToGame(socket, data) {
         .then(populatePlayers)
         .then((game) => {
             socket.join(game._id);
-            appIO.to(game._id).emit('new-players', game);
+            io.to(game._id).emit('new-players', game);
+        })
+        .catch(handleError);
+}
+
+function startGame(socket, io) {
+    GameModel
+        .findOne({
+            host: socket.handshake.session.playerId
+        })
+        .exec()
+        .then((game) => {
+            game.status = 'IN_PROGRESS';
+            game.spy = chooseSpy(game.players);
+
+            return game.save();
+        })
+        .then(populatePlayers)
+        .then((game) => {
+            io.to(game._id).emit('game-started', game);
         })
         .catch(handleError);
 }
 
 function populatePlayers(game) {
-    return game.populate('host players')
+    return game
+        .populate('host players spy')
         .execPopulate();
+}
+
+function chooseSpy(players) {
+    return players[Math.floor(Math.random() * (players.length + 1))];
 }
 
 function handleError(error) {
@@ -75,5 +103,6 @@ module.exports = {
     getGameStatus,
     createNewGame,
     connectToGame,
+    startGame,
     addEvents
 };

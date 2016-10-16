@@ -1,4 +1,4 @@
-const PlayerModel = require('../player/player.model');
+const PlayerModel = require('./player.model');
 
 function createNewPlayer(socket, username) {
     if (!username) {

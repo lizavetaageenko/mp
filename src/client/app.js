@@ -4,9 +4,10 @@ const socket = io('ws://localhost:3332');
 
 const startNewGameSection = document.getElementById('start-new-game');
 const gameSection = document.getElementById('game');
+const gameInfo = document.getElementById('game-info');
 
 function showGameSection(data) {
-    gameSection.innerHTML = `Game: ${data._id || data.game._id}`;
+    gameInfo.innerHTML = `Game: ${data._id || data.game._id}`;
     gameSection.classList.remove('hidden');
     startNewGameSection.classList.add('hidden');
 }
@@ -29,6 +30,7 @@ socket.on('new-players', showGameSection);
 
 const newGameButton = document.getElementById('new-game');
 const connectToGameButton = document.getElementById('connect-to-game');
+const startGameButton = document.getElementById('start-game');
 const username = document.getElementById('username');
 const gameId = document.getElementById('game-id');
 
@@ -43,4 +45,8 @@ connectToGameButton.addEventListener('click', () => {
         username: username.value,
         gameId: gameId.value
     });
+});
+
+startGameButton.addEventListener('click', () => {
+    socket.emit('start-game');
 });
