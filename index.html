@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>MP</title>
 
     <style>
@@ -13,16 +14,18 @@
     </style>
 </head>
 <body>
-<section id="start-new-game" class="hidden">
-    <input type="text" id="username" placeholder="username">
-    <input type="text" id="game-id" placeholder="game-id">
-    <button id="new-game">New Game</button>
-    <button id="connect-to-game">Connect to Game</button>
-</section>
+    <div id="app-root"></div>
 
-<section id="game" class="hidden">
-    <div id="game-info"></div>
-    <button id="start-game">Start Game</button>
-</section>
+    <section id="start-new-game" class="hidden">
+        <input type="text" id="username" placeholder="username">
+        <input type="text" id="game-id" placeholder="game-id">
+        <button id="new-game">New Game</button>
+        <button id="connect-to-game">Connect to Game</button>
+    </section>
+
+    <section id="game" class="hidden">
+        <div id="game-info"></div>
+        <button id="start-game">Start Game</button>
+    </section>
 </body>
 </html>

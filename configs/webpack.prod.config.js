@@ -64,6 +64,11 @@ module.exports = {
         ];
     },
     plugins: [
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify("production")
+            }
+        }),
         new webpack.NoErrorsPlugin(),
         new CleanWebpackPlugin(['build'], {
             root: path.resolve('./'),
