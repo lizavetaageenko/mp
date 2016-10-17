@@ -3,8 +3,8 @@ const expressSession = require('express-session');
 const MongoStore = require('connect-mongo')(expressSession);
 const socket = require('./socket');
 const db = require('./db');
-const gameRouter = require('./game/game.router');
-const locationCtrl = require('./location/location.ctrl');
+const router = require('./game/game.router');
+const location = require('./seed/location');
 
 const port = 3332;
 const app = express();
@@ -31,5 +31,5 @@ const server = app.listen(port, () => {
 });
 
 socket.init(server, session);
-gameRouter.init(app);
-locationCtrl.populateDB();
+router.init(app);
+location.populate();

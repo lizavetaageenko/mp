@@ -1,6 +1,6 @@
-const LocationModel = require('./location.model');
+const LocationModel = require('../location/location.model');
 
-function populateDB() {
+function populate() {
     const stubLocations = [
         {name: 'School'},
         {name: 'Hospital'},
@@ -30,5 +30,5 @@ function populateDB() {
 }
 
 module.exports = {
-    populateDB
+    populate
 };

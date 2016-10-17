@@ -1,6 +1,6 @@
 const socketio = require('socket.io');
 const expressSocketioSession = require('express-socket.io-session');
-const GameController = require('./game/game.ctrl');
+const gameController = require('./game/game.ctrl');
 
 exports.init = function (app, session) {
     const io = socketio(app);
@@ -12,6 +12,16 @@ exports.init = function (app, session) {
     io.on('connection', (socket) => {
         socket.emit('connected');
 
-        GameController.addEvents(socket, io);
+        socket.on('new-game', (data) => {
+            gameController.createNewGame(socket, data);
+        });
+
+        socket.on('connect-to-game', (data) => {
+            gameController.connectToGame(socket, io, data);
+        });
+
+        socket.on('start-game', () => {
+            gameController.startGame(socket, io);
+        });
     });
 };

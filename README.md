@@ -1,4 +1,4 @@
-# MP project
+# JSpy project
 
 ## Dev Env Features
 
@@ -21,15 +21,25 @@
 
 ## App TODO list
 
-- [ ] Give app the coolest name ever
+- [x] Give app the coolest name ever -> JSpy
 - [x] [BE] Create a new game
 - [x] [BE] Connect to created game
-- [ ] [BE] Update `game.status` on 'start game'
-- [ ] [BE] Randomly pick 10 locations and set 1 to `game.location`
-- [ ] [BE] Randomly choose a spy
+- [x] [BE] Update `game.status` on 'start game'
+- [x] [BE] Randomly pick 10 locations and set 1 to `game.location`
+- [x] [BE] Randomly choose a spy
 - [ ] [BE] Start timer on 'start game'
 - [ ] [BE] Emit 'game started' with updated game data
-- [ ] To be continued ...
+- [ ] [BE] To be continued ...
+
+- [x] [FE] Add router
+- [x] [FE] 'start-game' page styling
+- [ ] [FE] 'new-game' page styling
+- [ ] [FE] 'connect-to-game' page styling
+- [ ] [FE] 'game' page styling
+- [ ] [FE] 'game/locations' page styling
+- [ ] [FE] 'game/vote-for-spy' page styling
+- [ ] [FE] 'game/choose-location' page styling
+- [ ] [FE] To be continued ...
 
 ## Known issues
 - [ ] Player socket is not added to game room after get game-status
@@ -41,6 +51,9 @@ $ npm start
 ```
 
 ## BE
+
+Client and Server interact through web-sockets, which share session with Express. There is only one API `/game-status` which is needed to check if player is already added to a game. On server start db is checked to have some locations added, locations are populated from `seed/location.js` if needed.
+See whole flow [here](https://github.com/lizavetaageenko/mp/wiki/App-Architecture#game-flow).
 
 ```bash
 $ npm run start:server

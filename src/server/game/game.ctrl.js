@@ -1,26 +1,12 @@
 const GameModel = require('./game.model');
 const playerCtrl = require('../player/player.ctrl');
 
-function addEvents(socket, io) {
-    socket.on('new-game', (data) => {
-        createNewGame(socket, data);
-    });
-
-    socket.on('connect-to-game', (data) => {
-        connectToGame(socket, io, data);
-    });
-
-    socket.on('start-game', () => {
-        startGame(socket, io);
-    });
-}
-
 function getGameStatus(req, res) {
     GameModel
         .findOne({
             players: req.session.playerId
         })
-        .populate('host players')
+        .populate('host players spy')
         .exec()
         .then((game) => {
             res.send({game});
@@ -103,6 +89,5 @@ module.exports = {
     getGameStatus,
     createNewGame,
     connectToGame,
-    startGame,
-    addEvents
+    startGame
 };
