@@ -37,6 +37,8 @@ module.exports = {
         'comma-dangle': 0,
         'no-use-before-define': ['error', {'functions': false}],
         'no-param-reassign': ['error', {'props': false}],
-        'react/jsx-filename-extension': 0
+        'react/jsx-filename-extension': 0,
+        'react/jsx-indent-props': ['error', 4],
+        'react/prefer-stateless-function': ['error']
     }
 };

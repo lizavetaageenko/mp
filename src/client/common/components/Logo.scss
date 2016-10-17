@@ -1,0 +1,17 @@
+@import "../styles/variables";
+
+.logo {
+    margin-bottom: 1rem;
+    font-size: 4rem;
+    color: $secondary-color;
+
+    &.big {
+        text-align: center;
+    }
+
+    .js {
+        display: inline-block;
+        font-size: 5rem;
+        color: $primary-color;
+    }
+}

@@ -1,8 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+    Router,
+    Route,
+    IndexRoute,
+    hashHistory
+} from 'react-router';
+
+import './common/styles/app.scss';
+
+import StartGame from './game/components/StartGame';
+import NewGame from './game/components/NewGame';
+import ConnectToGame from './game/components/ConnectToGame';
+import GameContainer from './game/components/GameContainer';
+import Game from './game/components/Game';
+import GameLocations from './locations/components/GameLocations';
+import ChooseLocation from './locations/components/ChooseLocation';
+import VoteForSpy from './players/components/VoteForSpy';
+
+const App = ({ children }) => (
+    <div>{children}</div>
+);
+
+App.propTypes = {
+    children: React.PropTypes.oneOfType([
+        React.PropTypes.arrayOf(React.PropTypes.node),
+        React.PropTypes.node
+    ])
+};
+
+const Routes = () => (
+    <Router history={hashHistory}>
+        <Route path="/" component={App}>
+            <IndexRoute component={StartGame} />
+            <Route path="new-game" component={NewGame} />
+            <Route path="connect-to-game" component={ConnectToGame} />
+            <Route path="game" component={GameContainer}>
+                <IndexRoute component={Game} />
+                <Route path="locations" component={GameLocations} />
+                <Route path="vote-for-spy" component={VoteForSpy} />
+                <Route path="choose-location" component={ChooseLocation} />
+            </Route>
+        </Route>
+    </Router>
+);
 
 ReactDOM.render(
-    <h1>Hello, world!</h1>,
+    <Routes />,
     document.getElementById('app-root')
 );
 

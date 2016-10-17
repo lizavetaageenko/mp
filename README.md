@@ -17,6 +17,7 @@
 - [x] Git hooks: Lint rules, tests and coverage
 - [ ] Webpack to bundle BE
 - [ ] Watch and reload BE (PM2)
+- [ ] Configure `WebpackDevServer` to be able to use `browserHistory` in `react-router`
 
 ## App TODO list
 

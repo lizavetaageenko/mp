@@ -1,0 +1,38 @@
+@import "./reset";
+@import "./variables";
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
+html {
+    font-size: 10px;
+    font-family: "Open Sans", sans-serif;
+
+    @media (min-width: $large-bp) {
+        font-size: 12px;
+    }
+}
+
+body {
+    font-size: 2rem;
+    color: $secondary-color;
+}
+
+html,
+body,
+.app-root,
+[data-reactroot] {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 3.5rem;
+
+    @media (min-width: $large-bp) {
+        width: 730px;
+        margin: 0 auto;
+    }
+}
