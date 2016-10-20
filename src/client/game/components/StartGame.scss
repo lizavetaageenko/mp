@@ -6,12 +6,14 @@
     }
 
     .logo {
-        padding: 2rem 0;
+        padding: 4rem 0;
     }
-}
 
-.buttons-container {
-    .start-game {
-        margin-bottom: 2rem;
+    .buttons-container {
+        margin-bottom: 5rem;
+
+        .start-game {
+            margin-bottom: 2rem;
+        }
     }
 }

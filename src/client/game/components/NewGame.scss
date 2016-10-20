@@ -6,12 +6,18 @@
     }
 
     .game-id {
-        font-weight: 700px;
+        font-weight: 700;
         text-align: center;
-        font-size: 2.2rem;
+        font-size: 3rem;
     }
 
-    .players {
-        height: 40%;
+    .new-game-players {
+        .new-game-players-title {
+            flex-grow: 0;
+        }
+
+        .players-list {
+            flex-grow: 1;
+        }
     }
 }

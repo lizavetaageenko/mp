@@ -1,0 +1,12 @@
+@import "../../common/styles/variables";
+
+.player {
+    padding: 0 1rem 1rem;
+
+    .player-image {
+        margin-bottom: 1rem;
+        padding-top: calc(100% - 4px);
+        border-radius: 50%;
+        border: 2px solid $secondary-color;
+    }
+}

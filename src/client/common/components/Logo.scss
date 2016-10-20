@@ -3,15 +3,21 @@
 .logo {
     margin-bottom: 1rem;
     font-size: 4rem;
+    font-weight: 700;
     color: $secondary-color;
-
-    &.big {
-        text-align: center;
-    }
 
     .js {
         display: inline-block;
         font-size: 5rem;
         color: $primary-color;
+    }
+
+    &.big {
+        text-align: center;
+        font-size: 5rem;
+
+        .js {
+            font-size: 6rem;
+        }
     }
 }
