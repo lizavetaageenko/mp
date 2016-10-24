@@ -8,20 +8,21 @@ import TextInput from '../../common/components/TextInput';
 
 const StartGame = () => (
     <div className="start-game-page">
-        <div className="container">
+        <div className="container start-game-page__container">
             <div className="mainbar">
-                <Logo className="big" />
+                <Logo className="start-game-page__logo big" />
 
-                <div className="player-name-container">
-                    <TextInput
-                        className="player-name"
-                        placeholder="Enter Your Name"
-                    />
+                <div>
+                    <TextInput className="player-name" placeholder="Enter Your Name" />
                 </div>
 
-                <div className="buttons-container">
-                    <Button className="start-game">Start New Game</Button>
-                    <Button className="connect-to-game">Connect To Game</Button>
+                <div className="start-game-page__buttons-container">
+                    <Button className="start-game-page__start-game-button">
+                        Start New Game
+                    </Button>
+                    <Button className="start-game-page__connect-to-game-button">
+                        Connect To Game
+                    </Button>
                 </div>
             </div>
         </div>

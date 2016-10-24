@@ -1,5 +1,5 @@
 @import "./reset";
-@import "./variables";
+@import "variables";
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
@@ -58,7 +58,6 @@ h5 {
     flex-direction: column;
     justify-content: space-between;
     padding: 3.5rem;
-    background-color: $primary-color-x-light;
 
     @media (min-width: $medium-bp) {
         padding: 7rem;
@@ -67,12 +66,15 @@ h5 {
     @media (min-width: $large-bp) {
         padding: 0;
         flex-direction: row;
-        background-color: $white-color;
     }
 
     @media (min-width: $x-large-bp) {
         width: $x-large-bp - 100px;
         margin: 0 auto;
+    }
+
+    @media (max-height: $small-height-bp) {
+        padding: 1rem 3.5rem;
     }
 }
 
@@ -85,7 +87,6 @@ h5 {
     @media (min-width: $large-bp) {
         width: 40%;
         padding: 5rem;
-        background-color: $primary-color-x-light;
     }
 }
 

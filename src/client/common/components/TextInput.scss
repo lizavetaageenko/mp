@@ -25,4 +25,9 @@
         color: $primary-color;
         font-weight: 400;
     }
+
+    @media (max-height: $small-height-bp) {
+        font-size: 1.4rem;
+        padding: 1rem;
+    }
 }

@@ -1,19 +1,25 @@
+@import "../../common/styles/variables";
+
 .start-game-page {
     height: 100%;
 
-    .container {
+    &__container {
         height: 100%;
     }
 
-    .logo {
+    &__logo {
         padding: 4rem 0;
+
+        @media (max-height: $small-height-bp) {
+            padding: 1rem 0;
+        }
     }
 
-    .buttons-container {
-        margin-bottom: 5rem;
+    &__buttons-container {
+        margin-bottom: 4rem;
+    }
 
-        .start-game {
-            margin-bottom: 2rem;
-        }
+    &__start-game-button {
+        margin-bottom: 2rem;
     }
 }
