@@ -5,25 +5,33 @@ import './ConnectToGame.scss';
 import GameHeader from './GameHeader';
 import Button from '../../common/components/Button';
 import TextInput from '../../common/components/TextInput';
+import PlayersList from '../../players/components/PlayersList';
 
 const ConnectToGame = () => (
     <div className="connect-to-game-page">
-        <div className="container">
-            <GameHeader />
+        <div className="container connect-to-game-page__container">
+            <div className="mainbar connect-to-game-page__mainbar">
+                <GameHeader />
 
-            <div className="game-id-container">
-                <TextInput
-                    className="game-id"
-                    placeholder="Game ID"
-                />
+                <div>
+                    <TextInput
+                        className="connect-to-game-page__game-id"
+                        placeholder="Game ID"
+                    />
+                </div>
+
+                <div>
+                    <Button className="connect-to-game-page__start-game-button">
+                        Connect
+                    </Button>
+                </div>
             </div>
 
-            <div className="buttons-container">
-                <Button className="start-game">Connect</Button>
-            </div>
-
-            <div className="players">
-                Players here...
+            <div className="sidebar connect-to-game-page__players">
+                <h3 className="connect-to-game-page__players-title">
+                    Players
+                </h3>
+                <PlayersList />
             </div>
         </div>
     </div>

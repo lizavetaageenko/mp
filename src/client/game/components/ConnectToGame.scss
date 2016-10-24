@@ -1,11 +1,34 @@
+@import "../../common/styles/variables";
+
 .connect-to-game-page {
     height: 100%;
 
-    .container {
+    &__container {
         height: 100%;
+
+        @media (min-width: $x-large-bp) {
+            width: auto;
+        }
     }
 
-    .players {
-        height: 40%;
+    &__mainbar {
+        @media (orientation: landscape) {
+            background-color: $primary-color-x-light;
+            border-right: 2px solid $primary-color;
+        }
+    }
+
+    &__players {
+        .players-list {
+            flex-grow: 1;
+        }
+    }
+
+    &__players-title {
+        flex-grow: 0;
+
+        @media (orientation: landscape) {
+            margin-top: 2rem;
+        }
     }
 }
