@@ -1,23 +1,40 @@
+@import "../../common/styles/variables";
+
 .new-game-page {
     height: 100%;
 
-    .container {
+    &__container {
         height: 100%;
+
+        @media (min-width: $x-large-bp) {
+            width: auto;
+        }
     }
 
-    .game-id {
+    &__mainbar {
+        @media (orientation: landscape) {
+            background-color: $primary-color-x-light;
+            border-right: 2px solid $primary-color;
+        }
+    }
+
+    &__game-id {
         font-weight: 700;
         text-align: center;
         font-size: 3rem;
     }
 
-    .new-game-players {
-        .new-game-players-title {
-            flex-grow: 0;
-        }
-
+    &__players {
         .players-list {
             flex-grow: 1;
+        }
+    }
+
+    &__players-title {
+        flex-grow: 0;
+
+        @media (orientation: landscape) {
+            margin-top: 2rem;
         }
     }
 }

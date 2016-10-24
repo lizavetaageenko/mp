@@ -63,18 +63,18 @@ h5 {
         padding: 7rem;
     }
 
-    @media (min-width: $large-bp) {
-        padding: 0;
-        flex-direction: row;
-    }
-
     @media (min-width: $x-large-bp) {
         width: $x-large-bp - 100px;
         margin: 0 auto;
     }
 
     @media (max-height: $small-height-bp) {
-        padding: 1rem 3.5rem;
+        padding: 1rem 7rem;
+    }
+
+    @media (orientation: landscape) {
+        padding: 0;
+        flex-direction: row;
     }
 }
 
@@ -84,9 +84,13 @@ h5 {
     justify-content: space-between;
     flex-grow: 1;
 
-    @media (min-width: $large-bp) {
-        width: 40%;
-        padding: 5rem;
+    @media (orientation: landscape) {
+        width: 35%;
+        padding: 3.5rem;
+    }
+
+    @media (max-height: $small-height-bp) {
+        padding: 2rem;
     }
 }
 
@@ -100,10 +104,14 @@ h5 {
         margin-top: 5rem;
     }
 
-    @media (min-width: $large-bp) {
-        width: 60%;
+    @media (orientation: landscape) {
+        width: 65%;
         height: 100%;
         margin-top: 0;
-        padding: 5rem;
+        padding: 3.5rem;
+    }
+
+    @media (max-height: $small-height-bp) {
+        padding: 2rem;
     }
 }

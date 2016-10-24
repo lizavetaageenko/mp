@@ -8,21 +8,23 @@ import PlayersList from '../../players/components/PlayersList';
 
 const NewGame = () => (
     <div className="new-game-page">
-        <div className="container">
-            <div className="mainbar">
+        <div className="container new-game-page__container">
+            <div className="mainbar new-game-page__mainbar">
                 <GameHeader />
 
-                <div className="game-id">
+                <div className="new-game-page__game-id">
                     26012016
                 </div>
 
-                <div className="buttons-container">
-                    <Button className="start-game">Start</Button>
+                <div>
+                    <Button className="new-game-page__start-game-button">
+                        Start
+                    </Button>
                 </div>
             </div>
 
-            <div className="sidebar new-game-players">
-                <h3 className="new-game-players-title">
+            <div className="sidebar new-game-page__players">
+                <h3 className="new-game-page__players-title">
                     Players
                 </h3>
                 <PlayersList />
