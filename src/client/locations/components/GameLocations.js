@@ -1,7 +1,11 @@
 import React from 'react';
 
+import LocationsList from './LocationsList';
+
 const GameLocations = () => (
-    <div>GameLocations</div>
+    <div className="game-locations">
+        <LocationsList />
+    </div>
 );
 
 export default GameLocations;

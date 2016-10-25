@@ -1,0 +1,13 @@
+.game-container {
+    height: 100%;
+
+    &__mainbar {
+        height: 100%;
+    }
+
+    &__timer {
+        text-align: center;
+        margin: 1rem 0 4rem;
+        flex-shrink: 0;
+    }
+}

@@ -1,0 +1,6 @@
+@import "../../common/styles/variables";
+
+.game-card {
+    padding-top: calc(66.66666% - 4px);
+    border: 2px solid $primary-color;
+}

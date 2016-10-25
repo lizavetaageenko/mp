@@ -83,6 +83,7 @@ h5 {
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
+    overflow-y: auto;
 
     @media (orientation: landscape) {
         width: 35%;

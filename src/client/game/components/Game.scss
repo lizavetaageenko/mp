@@ -1,0 +1,14 @@
+.game-page {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    flex-shrink: 0;
+
+    &__buttons-container {
+        margin-top: 2rem;
+    }
+
+    &__check-locations-button {
+        margin-bottom: 2rem;
+    }
+}
