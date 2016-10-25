@@ -33,8 +33,8 @@
 
 - [x] [FE] Add router
 - [x] [FE] 'start-game' page styling
-- [ ] [FE] 'new-game' page styling
-- [ ] [FE] 'connect-to-game' page styling
+- [x] [FE] 'new-game' page styling
+- [x] [FE] 'connect-to-game' page styling
 - [ ] [FE] 'game' page styling
 - [ ] [FE] 'game/locations' page styling
 - [ ] [FE] 'game/vote-for-spy' page styling
@@ -45,6 +45,14 @@
 - [ ] Player socket is not added to game room after get game-status
 
 ## FE
+
+For now there are several styled pages in the app:
+- Start Game page (/)
+- New Game page (/new-game)
+- Connect To Game page (/connect-to-game)
+- Game page (/game)
+
+They are implemented using ReactJS components and styled using Sass and BEM.
 
 ```bash
 $ npm start
