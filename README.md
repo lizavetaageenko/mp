@@ -53,7 +53,7 @@ $ npm start
 ## BE
 
 Client and Server interact through web-sockets, which share session with Express. There is only one API `/game-status` which is needed to check if player is already added to a game. On server start db is checked to have some locations added, locations are populated from `seed/location.js` if needed.
-See whole flow [here](https://github.com/lizavetaageenko/mp/wiki/App-Architecture#game-flow).
+See whole flow [here](https://git.epam.com/Yelyzaveta_Buts/mp/wikis/app-architecture#game-flow).
 
 ```bash
 $ npm run start:server
