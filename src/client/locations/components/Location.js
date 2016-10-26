@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Location = ({ name }) => (
-    <div className="location">
+import './Location.scss';
+
+const Location = ({ name, className }) => (
+    <div className={`location ${className}`}>
         <div className="location__title">
             {name}
         </div>
@@ -11,9 +13,11 @@ const Location = ({ name }) => (
 export default Location;
 
 Location.propTypes = {
-    name: React.PropTypes.string
+    name: React.PropTypes.string,
+    className: React.PropTypes.string
 };
 
 Location.defaultProps = {
-    name: ''
+    name: '',
+    className: ''
 };
