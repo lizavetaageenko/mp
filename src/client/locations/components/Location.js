@@ -4,6 +4,7 @@ import './Location.scss';
 
 const Location = ({ name, className }) => (
     <div className={`location ${className}`}>
+        <div className="location__image" />
         <div className="location__title">
             {name}
         </div>

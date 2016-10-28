@@ -1,4 +1,16 @@
-.locations {
-    position: relative;
-    padding-top: calc(66.66666%);
+@import "../../common/styles/variables";
+
+.locations-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -1rem;
+    margin-right: -1rem;
+    align-items: flex-start;
+    align-content: flex-start;
+    overflow-y: auto;
+
+    .location {
+        width: 33.3%;
+        padding: 1rem;
+    }
 }

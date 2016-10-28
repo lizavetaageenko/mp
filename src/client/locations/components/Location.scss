@@ -1,29 +1,13 @@
 @import "../../common/styles/variables";
 
 .location {
-    padding-top: 66.6%;
-    background-color: $primary-color;
-    position: absolute;
-    top: 0;
-    left: -100%;
-    right: 0;
-    visibility: hidden;
-    transition-property: left;
-    transition-duration: 0.5s;
-    overflow: hidden;
-
-    &-active {
-        visibility: visible;
-        left: 0;
+    &__image {
+        border: 2px solid $primary-color;
+        padding-top: 66.6%;
+        margin-bottom: 2rem;
     }
 
     &__title {
-        position: absolute;
-        padding: 2rem;
-        top: 0;
-        left: 0;
-
-        color: $white-color;
         font-weight: 700;
     }
 }

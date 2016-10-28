@@ -1,7 +1,20 @@
 import React from 'react';
 
+import './VoteForSpy.scss';
+
+import Button from '../../common/components/Button';
+import PlayersList from './PlayersList';
+
 const VoteForSpy = () => (
-    <div>VoteForSpy</div>
+    <div className="vote-for-spy-page">
+        <PlayersList />
+
+        <div className="vote-for-spy-page__button-container">
+            <Button className="vote-for-spy-page__vote-button">
+                Vote
+            </Button>
+        </div>
+    </div>
 );
 
 export default VoteForSpy;
