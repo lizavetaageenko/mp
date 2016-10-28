@@ -35,8 +35,8 @@
 - [x] [FE] 'start-game' page styling
 - [x] [FE] 'new-game' page styling
 - [x] [FE] 'connect-to-game' page styling
-- [ ] [FE] 'game' page styling
-- [ ] [FE] 'game/locations' page styling
+- [x] [FE] 'game' page styling
+- [x] [FE] 'game/locations' page styling
 - [ ] [FE] 'game/vote-for-spy' page styling
 - [ ] [FE] 'game/choose-location' page styling
 - [ ] [FE] To be continued ...
@@ -51,6 +51,7 @@ For now there are several styled pages in the app:
 - New Game page (/new-game)
 - Connect To Game page (/connect-to-game)
 - Game page (/game)
+- Game Locations page (/game/locations). There is a carousel for locations on this page.
 
 They are implemented using ReactJS components and styled using Sass and BEM.
 
