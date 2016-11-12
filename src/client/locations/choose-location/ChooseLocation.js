@@ -3,7 +3,7 @@ import React from 'react';
 import './ChooseLocation.scss';
 
 import Button from '../../common/components/Button';
-import LocationsList from './LocationsList';
+import LocationsList from '../locations-list/LocationsList';
 
 const ChooseLocation = () => (
     <div className="choose-location-page">

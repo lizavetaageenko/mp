@@ -3,8 +3,8 @@ import React from 'react';
 import './NewGame.scss';
 
 import Button from '../../common/components/Button';
-import GameHeader from './GameHeader';
-import PlayersList from '../../players/components/PlayersList';
+import GameHeader from '../game-header/GameHeader';
+import PlayersList from '../../players/players-list/PlayersList';
 
 const NewGame = () => (
     <div className="new-game-page">

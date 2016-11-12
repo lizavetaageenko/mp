@@ -2,10 +2,10 @@ import React from 'react';
 
 import './ConnectToGame.scss';
 
-import GameHeader from './GameHeader';
+import GameHeader from '../game-header/GameHeader';
 import Button from '../../common/components/Button';
 import TextInput from '../../common/components/TextInput';
-import PlayersList from '../../players/components/PlayersList';
+import PlayersList from '../../players/players-list/PlayersList';
 
 const ConnectToGame = () => (
     <div className="connect-to-game-page">

@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Game.scss';
 
-import Button from '../../common/components/Button';
-import GameCard from './GameCard';
+import Button from '../common/components/Button';
+import GameCard from './game-cart/GameCard';
 
 const Game = () => (
     <div className="game-page">

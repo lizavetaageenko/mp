@@ -2,7 +2,7 @@ import React from 'react';
 
 import './LocationsList.scss';
 
-import Location from './Location';
+import Location from '../location/Location';
 
 const LocationsList = ({ locations }) => (
     <div className="locations-list">

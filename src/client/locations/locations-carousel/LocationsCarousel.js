@@ -2,7 +2,7 @@ import React from 'react';
 
 import './LocationsCarousel.scss';
 
-import Location from './Location';
+import Location from '../location/Location';
 
 export default class LocationsCarousel extends React.Component {
     constructor(props) {

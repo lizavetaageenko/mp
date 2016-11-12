@@ -9,14 +9,14 @@ import {
 
 import './common/styles/app.scss';
 
-import StartGame from './game/components/StartGame';
-import NewGame from './game/components/NewGame';
-import ConnectToGame from './game/components/ConnectToGame';
-import GameContainer from './game/components/GameContainer';
-import Game from './game/components/Game';
-import GameLocations from './locations/components/GameLocations';
-import ChooseLocation from './locations/components/ChooseLocation';
-import VoteForSpy from './players/components/VoteForSpy';
+import StartGame from './game/start-game/StartGame';
+import NewGame from './game/new-game/NewGame';
+import ConnectToGame from './game/connect-to-game/ConnectToGame';
+import GameContainer from './game/GameContainer';
+import Game from './game/Game';
+import GameLocations from './locations/game-locations/GameLocations';
+import ChooseLocation from './locations/choose-location/ChooseLocation';
+import VoteForSpy from './players/vote-for-spy/VoteForSpy';
 
 const App = ({ children }) => (
     <div>{children}</div>

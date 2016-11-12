@@ -2,7 +2,7 @@ import React from 'react';
 
 import './PlayersList.scss';
 
-import Player from './Player';
+import Player from '../player/Player';
 
 const PlayersList = ({ players }) => (
     <div className="players-list">

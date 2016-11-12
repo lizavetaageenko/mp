@@ -2,8 +2,8 @@ import React from 'react';
 
 import './GameLocations.scss';
 
-import LocationsList from './LocationsList';
-import LocationsCarousel from './LocationsCarousel';
+import LocationsList from '../locations-list/LocationsList';
+import LocationsCarousel from '../locations-carousel/LocationsCarousel';
 
 const GameLocations = () => (
     <div className="game-locations">

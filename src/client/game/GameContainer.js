@@ -2,8 +2,8 @@ import React from 'react';
 
 import './GameContainer.scss';
 
-import GameHeader from './GameHeader';
-import Timer from '../../common/components/Timer';
+import GameHeader from './game-header/GameHeader';
+import Timer from '../common/components/Timer';
 
 const GameContainer = ({ children }) => (
     <div className="game-container container">
