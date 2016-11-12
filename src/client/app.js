@@ -6,6 +6,8 @@ import {
     IndexRoute,
     hashHistory
 } from 'react-router';
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
 
 import './common/styles/app.scss';
 
