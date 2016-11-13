@@ -10,7 +10,7 @@ const path = require('path');
 module.exports = {
     entry: {
         app: [
-            path.join(path.resolve('src/client'), 'app')
+            path.join(path.resolve('src/client'), 'index')
         ]
     },
     output: {

@@ -11,7 +11,7 @@ module.exports = {
     entry: {
         app: [
             require.resolve('webpack-dev-server/client') + '?/',
-            path.join(path.resolve('src/client'), 'app')
+            path.join(path.resolve('src/client'), 'index')
         ]
     },
     output: {

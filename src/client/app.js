@@ -1,24 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {
-    Router,
-    Route,
-    IndexRoute,
-    hashHistory
-} from 'react-router';
-import { Provider } from 'react-redux'
-import configureStore from './store/configureStore'
 
 import './common/styles/app.scss';
-
-import StartGame from './game/start-game/StartGame';
-import NewGame from './game/new-game/NewGame';
-import ConnectToGame from './game/connect-to-game/ConnectToGame';
-import GameContainer from './game/GameContainer';
-import Game from './game/Game';
-import GameLocations from './locations/game-locations/GameLocations';
-import ChooseLocation from './locations/choose-location/ChooseLocation';
-import VoteForSpy from './players/vote-for-spy/VoteForSpy';
 
 const App = ({ children }) => (
     <div>{children}</div>
@@ -31,26 +13,7 @@ App.propTypes = {
     ])
 };
 
-const Routes = () => (
-    <Router history={hashHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={StartGame} />
-            <Route path="new-game" component={NewGame} />
-            <Route path="connect-to-game" component={ConnectToGame} />
-            <Route path="game" component={GameContainer}>
-                <IndexRoute component={Game} />
-                <Route path="locations" component={GameLocations} />
-                <Route path="vote-for-spy" component={VoteForSpy} />
-                <Route path="choose-location" component={ChooseLocation} />
-            </Route>
-        </Route>
-    </Router>
-);
-
-ReactDOM.render(
-    <Routes />,
-    document.getElementById('app-root')
-);
+export default App;
 
 // Dev code
 

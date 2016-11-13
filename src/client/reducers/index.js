@@ -1,1 +1,0 @@
-export default function game(state = data, action) {}
