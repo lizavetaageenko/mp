@@ -31,7 +31,7 @@ module.exports = {
     },
 
     rules: {
-        'indent': ['error', 4],
+        'indent': ['error', 4, {"SwitchCase": 1}],
         'react/jsx-indent': ['error', 4],
         'linebreak-style': 0,
         'comma-dangle': 0,
@@ -39,6 +39,7 @@ module.exports = {
         'no-param-reassign': ['error', {'props': false}],
         'react/jsx-filename-extension': 0,
         'react/jsx-indent-props': ['error', 4],
-        'react/prefer-stateless-function': ['error']
+        'react/prefer-stateless-function': ['error'],
+        'max-len': ['error', { "code": 120 }]
     }
 };

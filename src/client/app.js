@@ -1,25 +1,40 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './common/styles/app.scss';
 
-const App = ({ children }) => (
-    <div>{children}</div>
-);
+import { getGameStatus } from './game/gameActions';
+
+class App extends React.Component {
+    componentWillMount() {
+        this.props.getGameStatus();
+    }
+
+    render() {
+        const { children } = this.props;
+
+        return (<div>{children}</div>);
+    }
+}
 
 App.propTypes = {
     children: React.PropTypes.oneOfType([
         React.PropTypes.arrayOf(React.PropTypes.node),
         React.PropTypes.node
-    ])
+    ]),
+    getGameStatus: React.PropTypes.func.isRequired
 };
 
-export default App;
+export default connect(
+    null,
+    (dispatch) => ({
+        getGameStatus() { dispatch(getGameStatus()); }
+    })
+)(App);
 
 // Dev code
 
-// import io from 'socket.io-client';
-//
-// const socket = io('ws://localhost:3332');
+
 //
 // const startNewGameSection = document.getElementById('start-new-game');
 // const gameSection = document.getElementById('game');

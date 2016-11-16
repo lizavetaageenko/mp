@@ -9,7 +9,7 @@ function getGameStatus(req, res) {
         .populate('host players spy')
         .exec()
         .then((game) => {
-            res.send({game});
+            res.send({ game });
         })
         .catch(handleError);
 }
@@ -27,7 +27,8 @@ function createNewGame(socket, userData) {
         })
         .then(populatePlayers)
         .then((game) => {
-            socket.join(game._id);
+            console.log(game);
+            socket.join(game.id);
             socket.emit('game-created', game);
         })
         .catch(handleError);
@@ -88,6 +89,6 @@ function handleError(error) {
 module.exports = {
     getGameStatus,
     createNewGame,
-    connectToGame,
+    goToConnectToGame,
     startGame
 };

@@ -1,12 +1,24 @@
 import { combineReducers } from 'redux';
 
+import { SET_CURRENT_PLAYER } from './playersActions';
+
 const defaultCurrentPlayer = {
     id: null,
     username: null
 };
 
-function currentPlayerReducer(state = defaultCurrentPlayer) {
-    return state;
+function currentPlayerReducer(state = defaultCurrentPlayer, action) {
+    switch (action.type) {
+        case SET_CURRENT_PLAYER: {
+            return Object.assign({}, state, {
+                username: action.username
+            });
+        }
+
+        default: {
+            return state;
+        }
+    }
 }
 
 function playersReducer(state = []) {

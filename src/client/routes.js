@@ -3,7 +3,7 @@ import {
     Router,
     Route,
     IndexRoute,
-    hashHistory
+    browserHistory
 } from 'react-router';
 
 import App from './app';
@@ -18,9 +18,9 @@ import VoteForSpy from './players/vote-for-spy/VoteForSpy';
 
 
 const Routes = () => (
-    <Router history={hashHistory}>
+    <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <IndexRoute component={StartGame} />
+            <Route path="start-game" component={StartGame} />
             <Route path="new-game" component={NewGame} />
             <Route path="connect-to-game" component={ConnectToGame} />
             <Route path="game" component={GameContainer}>

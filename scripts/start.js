@@ -25,6 +25,7 @@ function run(port) {
         watchOptions: {
             ignored: /node_modules/
         },
+        historyApiFallback: true,
         proxy: {
             '/api': {
                 'target': {

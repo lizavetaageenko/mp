@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './NewGame.scss';
 
@@ -6,15 +7,16 @@ import Button from '../../common/components/Button';
 import GameHeader from '../game-header/GameHeader';
 import PlayersList from '../../players/players-list/PlayersList';
 
-const NewGame = () => (
+const NewGame = ({ gameId }) => (
     <div className="new-game-page">
         <div className="container new-game-page__container">
             <div className="mainbar new-game-page__mainbar">
                 <GameHeader />
 
                 <div className="new-game-page__game-id">
-                    26012016
+                    {gameId}
                 </div>
+
 
                 <div>
                     <Button className="new-game-page__start-game-button">
@@ -33,4 +35,16 @@ const NewGame = () => (
     </div>
 );
 
-export default NewGame;
+NewGame.defaultProps = {
+    gameId: ''
+};
+
+NewGame.propTypes = {
+    gameId: React.PropTypes.string
+};
+
+export default connect(
+    (state) => ({
+        gameId: state.game.id
+    })
+)(NewGame);
