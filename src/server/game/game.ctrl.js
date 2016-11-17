@@ -89,6 +89,6 @@ function handleError(error) {
 module.exports = {
     getGameStatus,
     createNewGame,
-    goToConnectToGame,
+    connectToGame,
     startGame
 };

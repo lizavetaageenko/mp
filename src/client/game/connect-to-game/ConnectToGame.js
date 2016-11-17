@@ -60,7 +60,7 @@ class ConnectToGame extends React.Component {
     renderValidationError() {
         if (!this.state.isGameIdValid) {
             return (
-                <div>
+                <div className="error">
                     Seems Game ID is invalid. Sorry
                 </div>
             );

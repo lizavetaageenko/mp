@@ -53,7 +53,7 @@ class StartGame extends React.Component {
     renderValidationError() {
         if (!this.state.isUsernameValid) {
             return (
-                <div>
+                <div className="error">
                     Please enter your name
                 </div>
             );
