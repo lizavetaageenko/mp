@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 
+import { JSPY_WEB_SOCKET } from './endpoints';
 import { handleGameCreated } from './game/gameActions';
 
 let socket = null;
@@ -15,7 +16,7 @@ export const socketIoMiddleware = () => (next) => (action) => {
 };
 
 export default function (dispatch) {
-    socket = io('ws://localhost:3332');
+    socket = io(JSPY_WEB_SOCKET);
 
     socket.on('game-created', (data) => {
         dispatch(handleGameCreated(data));

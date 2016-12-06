@@ -9,7 +9,8 @@
     "start:server": "node ./src/server",
     "build": "node ./scripts/build.js",
     "test": "jest",
-    "precommit:test": "jest --coverage --bail"
+    "precommit:test": "jest --coverage --bail",
+    "build:app": "node ./scripts/cordova.js && cd cordova && cordova run android"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,7 @@
     "sasslint-webpack-plugin": "^1.0.4",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
+    "webpack-cordova-plugin": "^0.1.6",
     "webpack-dev-server": "^1.15.1"
   },
   "jest": {

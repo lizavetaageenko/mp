@@ -1,20 +1,20 @@
 import fetch from 'isomorphic-fetch';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
+import { JSPY_WEB_API } from '../endpoints';
 import { SOCKET_IO_EVENT } from '../socket';
 import { setCurrentPlayer } from '../players/playersActions';
 
 export const getGameStatus = () => () => {
-    fetch('/api/game-status', {
-        method: 'GET',
-        credentials: 'include',
+    fetch(`${JSPY_WEB_API}/game-status`, {
+        method: 'GET'
     })
         .then(response => response.json())
         .then((response) => {
             if (response && response.game) {
-                browserHistory.push('/game');
+                hashHistory.push('/game');
             } else {
-                browserHistory.push('/start-game');
+                hashHistory.push('/start-game');
             }
         });
 };
@@ -32,7 +32,7 @@ export const newGame = (username) => (dispatch) => {
 
 export const goToConnectToGame = (username) => (dispatch) => {
     dispatch(setCurrentPlayer(username));
-    browserHistory.push('/connect-to-game');
+    hashHistory.push('/connect-to-game');
 };
 
 export const HANDLE_GAME_CREATED = 'HANDLE_GAME_CREATED';
@@ -43,7 +43,7 @@ export const handleGameCreated = (game) => (dispatch) => {
         game
     });
 
-    browserHistory.push('/new-game');
+    hashHistory.push('/new-game');
 };
 
 export const connectToGame = (gameId) => (dispatch, getState) => {

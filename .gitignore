@@ -9,6 +9,11 @@ build
 # testing
 coverage
 
+#cordova
+cordova/plugins
+cordova/platforms
+cordova/www
+
 # miscs
 .idea
 .DS_Store
