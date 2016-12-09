@@ -7,14 +7,20 @@ import configureStore from './configureStore';
 import initSocket from './socket';
 import Routes from './routes';
 
-ES6Promise.polyfill();
 
-const store = configureStore();
-initSocket(store.dispatch);
+window.document.addEventListener('deviceready', initApp, false);
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Routes />
-    </Provider>,
-    document.getElementById('app-root')
-);
+function initApp() {
+    ES6Promise.polyfill();
+
+    const store = configureStore();
+
+    initSocket(store.dispatch);
+
+    ReactDOM.render(
+        <Provider store={store}>
+            <Routes />
+        </Provider>,
+        document.getElementById('app-root')
+    );
+}

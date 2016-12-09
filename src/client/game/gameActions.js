@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { hashHistory } from 'react-router';
+import qrcode from 'qrcode-js';
 
 import { JSPY_WEB_API } from '../endpoints';
 import { SOCKET_IO_EVENT } from '../socket';
@@ -57,4 +58,18 @@ export const connectToGame = (gameId) => (dispatch, getState) => {
             gameId
         }
     });
+};
+
+export const CREATE_QR_CODE = 'CREATE_QR_CODE';
+export const createQCCode = (gameId) => (dispatch) => {
+    const QRCode = qrcode.toDataURL(gameId, 4);
+
+    dispatch({
+        type: CREATE_QR_CODE,
+        QRCode
+    });
+
+    // if (!window.cordova || !window.cordova.plugins || !window.cordova.plugins.barcodeScanner) {
+    //     return;
+    // }
 };
