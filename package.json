@@ -69,7 +69,7 @@
     },
     "scriptPreprocessor": "<rootDir>/configs/jest/transform.js",
     "testPathIgnorePatterns": [
-      "<rootDir>/(build|docs|node_modules)/"
+      "<rootDir>/(build|docs|node_modules|cordova)/"
     ],
     "testEnvironment": "node",
     "coverageThreshold": {

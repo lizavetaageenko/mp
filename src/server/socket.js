@@ -17,7 +17,7 @@ exports.init = function (app, session) {
         });
 
         socket.on('connect-to-game', (data) => {
-            gameController.goToConnectToGame(socket, io, data);
+            gameController.connectToGame(socket, io, data);
         });
 
         socket.on('start-game', () => {

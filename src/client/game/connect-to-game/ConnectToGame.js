@@ -8,8 +8,7 @@ import './ConnectToGame.scss';
 import GameHeader from '../game-header/GameHeader';
 import Button from '../../common/components/Button';
 import TextInput from '../../common/components/TextInput';
-import PlayersList from '../../players/players-list/PlayersList';
-import { connectToGame } from '../gameActions';
+import { connectToGame, scanQRCode } from '../gameActions';
 
 class ConnectToGame extends React.Component {
     constructor(props) {
@@ -99,10 +98,11 @@ class ConnectToGame extends React.Component {
                 </div>
 
                 <div className="sidebar connect-to-game-page__players">
-                    <h3 className="connect-to-game-page__players-title">
-                        Players
-                    </h3>
-                    <PlayersList />
+                    <Button
+                        onClick={() => this.props.scanQRCode()}
+                    >
+                        Scan QR Code
+                    </Button>
                 </div>
             </div>
         </div>);
@@ -110,12 +110,14 @@ class ConnectToGame extends React.Component {
 }
 
 ConnectToGame.propTypes = {
-    connectToGame: React.PropTypes.func.isRequired
+    connectToGame: React.PropTypes.func.isRequired,
+    scanQRCode: React.PropTypes.func.isRequired
 };
 
 export default connect(
     null,
     (dispatch) => ({
-        connectToGame(gameId) { dispatch(connectToGame(gameId)); }
+        connectToGame(gameId) { dispatch(connectToGame(gameId)); },
+        scanQRCode() { dispatch(scanQRCode()); }
     })
 )(ConnectToGame);

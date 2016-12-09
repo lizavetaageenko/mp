@@ -58,6 +58,8 @@ export const connectToGame = (gameId) => (dispatch, getState) => {
             gameId
         }
     });
+
+    hashHistory.push('/game');
 };
 
 export const CREATE_QR_CODE = 'CREATE_QR_CODE';
@@ -68,8 +70,14 @@ export const createQCCode = (gameId) => (dispatch) => {
         type: CREATE_QR_CODE,
         QRCode
     });
+};
 
-    // if (!window.cordova || !window.cordova.plugins || !window.cordova.plugins.barcodeScanner) {
-    //     return;
-    // }
+export const scanQRCode = () => (dispatch) => {
+    if (!window.cordova || !window.cordova.plugins || !window.cordova.plugins.barcodeScanner) {
+        return;
+    }
+
+    window.cordova.plugins.barcodeScanner.scan((result) => {
+        dispatch(connectToGame(result.text));
+    });
 };
