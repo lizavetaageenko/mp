@@ -1,0 +1,42 @@
+@import "../../common/styles/variables";
+
+.player-avatar-constructor {
+    position: relative;
+    border: 1px solid $primary-color;
+
+    &__canvas-container {
+        width: 100px;
+        height: 15rem;
+        margin: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    &__control {
+        position: absolute;
+        display: inline-block;
+        width: auto;
+        padding: 0.5rem;
+
+        &_prev {
+            left: 1rem;
+        }
+
+        &_next {
+            right: 1rem;
+        }
+
+        &_head {
+            top: 1rem;
+        }
+
+        &_eyes {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &_smile {
+            bottom: 1rem;
+        }
+    }
+}

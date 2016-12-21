@@ -7,8 +7,9 @@ import configureStore from './configureStore';
 import initSocket from './socket';
 import Routes from './routes';
 
+// window.document.addEventListener('deviceready', initApp, false);
 
-window.document.addEventListener('deviceready', initApp, false);
+initApp();
 
 function initApp() {
     ES6Promise.polyfill();

@@ -7,6 +7,7 @@ import './StartGame.scss';
 import Logo from '../../common/components/Logo';
 import Button from '../../common/components/Button';
 import TextInput from '../../common/components/TextInput';
+import PlayerAvatarConstructor from '../../players/player-avatar/PlayerAvatarConstructor';
 
 import { newGame, goToConnectToGame } from '../gameActions';
 
@@ -78,6 +79,8 @@ class StartGame extends React.Component {
                             />
                             {this.renderValidationError()}
                         </div>
+
+                        <PlayerAvatarConstructor />
 
                         <div className="start-game-page__buttons-container">
                             <Button
