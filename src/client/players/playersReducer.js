@@ -4,15 +4,14 @@ import { SET_CURRENT_PLAYER } from './playersActions';
 
 const defaultCurrentPlayer = {
     id: null,
-    username: null
+    username: null,
+    avatar: {}
 };
 
 function currentPlayerReducer(state = defaultCurrentPlayer, action) {
     switch (action.type) {
         case SET_CURRENT_PLAYER: {
-            return Object.assign({}, state, {
-                username: action.username
-            });
+            return Object.assign({}, state, action.userData);
         }
 
         default: {

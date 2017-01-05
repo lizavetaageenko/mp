@@ -16,11 +16,11 @@ function getGameStatus(req, res) {
 
 function createNewGame(socket, userData) {
     playerCtrl
-        .createNewPlayer(socket, userData.username)
+        .createNewPlayer(socket, userData)
         .then((player) => {
             const newGame = new GameModel({
-                host: player._id,
-                players: [player._id]
+                host: player._id, // eslint-disable-line no-underscore-dangle
+                players: [player._id] // eslint-disable-line no-underscore-dangle
             });
 
             return newGame.save();
@@ -38,17 +38,18 @@ function connectToGame(socket, io, data) {
     Promise
         .all([
             GameModel.findById(data.gameId).exec(),
-            playerCtrl.createNewPlayer(socket, data.username)
+            playerCtrl.createNewPlayer(socket, data.userData)
         ])
         .then((promises) => {
+            // eslint-disable-next-line no-underscore-dangle
             promises[0].players.push(promises[1]._id);
 
             return promises[0].save();
         })
         .then(populatePlayers)
         .then((game) => {
-            socket.join(game._id);
-            io.to(game._id).emit('new-players', game);
+            socket.join(game._id); // eslint-disable-line no-underscore-dangle
+            io.to(game._id).emit('new-players', game); // eslint-disable-line no-underscore-dangle
         })
         .catch(handleError);
 }
@@ -67,6 +68,7 @@ function startGame(socket, io) {
         })
         .then(populatePlayers)
         .then((game) => {
+            // eslint-disable-next-line no-underscore-dangle
             io.to(game._id).emit('game-started', game);
         })
         .catch(handleError);

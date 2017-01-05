@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { debounce } from 'lodash';
+import { debounce, pick } from 'lodash';
 
 import './StartGame.scss';
 
@@ -11,13 +11,22 @@ import PlayerAvatarConstructor from '../../players/player-avatar/PlayerAvatarCon
 
 import { newGame, goToConnectToGame } from '../gameActions';
 
+import heads from '../../players/player-avatar/face-parts/heads';
+import eyes from '../../players/player-avatar/face-parts/eyes';
+import smiles from '../../players/player-avatar/face-parts/smiles';
+
 class StartGame extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             username: '',
-            isUsernameValid: true
+            isUsernameValid: true,
+            avatar: {
+                head: Math.floor(Math.random() * heads.length),
+                eye: Math.floor(Math.random() * eyes.length),
+                smile: Math.floor(Math.random() * smiles.length)
+            }
         };
 
         this.updateUsernameValidState = debounce(() => {
@@ -43,7 +52,7 @@ class StartGame extends React.Component {
         const isUsernameValid = this.validateUsername(this.state.username);
 
         if (isUsernameValid) {
-            callback(this.state.username);
+            callback(pick(this.state, ['username', 'avatar']));
         } else {
             this.setState({
                 isUsernameValid
@@ -80,7 +89,10 @@ class StartGame extends React.Component {
                             {this.renderValidationError()}
                         </div>
 
-                        <PlayerAvatarConstructor />
+                        <PlayerAvatarConstructor
+                            avatar={this.state.avatar}
+                            onChange={(avatar) => this.setState({ avatar })}
+                        />
 
                         <div className="start-game-page__buttons-container">
                             <Button
@@ -111,7 +123,7 @@ StartGame.propTypes = {
 export default connect(
     null,
     (dispatch) => ({
-        newGame(username) { dispatch(newGame(username)); },
-        goToConnectToGame(username) { dispatch(goToConnectToGame(username)); }
+        newGame(userData) { dispatch(newGame(userData)); },
+        goToConnectToGame(userData) { dispatch(goToConnectToGame(userData)); }
     })
 )(StartGame);

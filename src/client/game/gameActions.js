@@ -20,19 +20,17 @@ export const getGameStatus = () => () => {
         });
 };
 
-export const newGame = (username) => (dispatch) => {
-    dispatch(setCurrentPlayer(username));
+export const newGame = (data) => (dispatch) => {
+    dispatch(setCurrentPlayer(data));
     dispatch({
         type: SOCKET_IO_EVENT,
         eventName: 'new-game',
-        data: {
-            username
-        }
+        data
     });
 };
 
-export const goToConnectToGame = (username) => (dispatch) => {
-    dispatch(setCurrentPlayer(username));
+export const goToConnectToGame = (data) => (dispatch) => {
+    dispatch(setCurrentPlayer(data));
     hashHistory.push('/connect-to-game');
 };
 
@@ -48,14 +46,14 @@ export const handleGameCreated = (game) => (dispatch) => {
 };
 
 export const connectToGame = (gameId) => (dispatch, getState) => {
-    const username = getState().players.currentPlayer.username;
+    const userData = getState().players.currentPlayer;
 
     dispatch({
         type: SOCKET_IO_EVENT,
         eventName: 'connect-to-game',
         data: {
-            username,
-            gameId
+            gameId,
+            userData
         }
     });
 

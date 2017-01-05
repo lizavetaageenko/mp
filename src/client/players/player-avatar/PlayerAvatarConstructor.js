@@ -1,4 +1,5 @@
 import React from 'react';
+import { isEqual } from 'lodash';
 
 import './PlayerAvatarConstructor.scss';
 
@@ -9,18 +10,14 @@ import eyes from './face-parts/eyes';
 import smiles from './face-parts/smiles';
 
 export default class PlayerAvatarConstructor extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            head: 0,
-            eye: 0,
-            smile: 0
-        };
+    componentDidMount() {
+        this.drawOnCanvas(this.props.avatar);
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        this.drawOnCanvas(nextState);
+    componentWillUpdate(nextProps) {
+        if (!isEqual(this.props.avatar, nextProps.avatar)) {
+            this.drawOnCanvas(nextProps.avatar);
+        }
     }
 
     drawOnCanvas({ head, eye, smile }) {
@@ -41,7 +38,15 @@ export default class PlayerAvatarConstructor extends React.Component {
              : array.length - 1;
     }
 
+    updateAvatar(newValue) {
+        this.props.onChange(
+            Object.assign({}, this.props.avatar, newValue)
+        );
+    }
+
     render() {
+        const { avatar } = this.props;
+
         return (
             <div className="player-avatar-constructor">
                 <div className="player-avatar-constructor__canvas-container">
@@ -53,6 +58,7 @@ export default class PlayerAvatarConstructor extends React.Component {
                             if (!canvas) {
                                 return;
                             }
+
                             this.canvas = canvas;
                             this.canvasContext = canvas.getContext('2d');
                         }}
@@ -61,36 +67,39 @@ export default class PlayerAvatarConstructor extends React.Component {
                 <PlayerAvatarConstructorControl
                     facePart="head"
                     direction="prev"
-                    onClick={() => { this.setState({ head: this.prev(heads, this.state.head) }); }}
+                    onClick={() => { this.updateAvatar({ head: this.prev(heads, avatar.head) }); }}
                 />
                 <PlayerAvatarConstructorControl
                     facePart="head"
                     direction="next"
-                    onClick={() => { this.setState({ head: this.next(heads, this.state.head) }); }}
+                    onClick={() => { this.updateAvatar({ head: this.next(heads, avatar.head) }); }}
                 />
                 <PlayerAvatarConstructorControl
                     facePart="eyes"
                     direction="prev"
-                    onClick={() => { this.setState({ eye: this.prev(eyes, this.state.eye) }); }}
+                    onClick={() => { this.updateAvatar({ eye: this.prev(eyes, avatar.eye) }); }}
                 />
                 <PlayerAvatarConstructorControl
                     facePart="eyes"
                     direction="next"
-                    onClick={() => { this.setState({ eye: this.next(eyes, this.state.eye) }); }}
+                    onClick={() => { this.updateAvatar({ eye: this.next(eyes, avatar.eye) }); }}
                 />
                 <PlayerAvatarConstructorControl
                     facePart="smile"
                     direction="prev"
-                    onClick={() => { this.setState({ smile: this.prev(smiles, this.state.smile) }); }}
+                    onClick={() => { this.updateAvatar({ smile: this.prev(smiles, avatar.smile) }); }}
                 />
                 <PlayerAvatarConstructorControl
                     facePart="smile"
                     direction="next"
-                    onClick={() => { this.setState({ smile: this.next(smiles, this.state.smile) }); }}
+                    onClick={() => { this.updateAvatar({ smile: this.next(smiles, avatar.smile) }); }}
                 />
             </div>
         );
     }
 }
 
-PlayerAvatarConstructor.propTypes = {};
+PlayerAvatarConstructor.propTypes = {
+    avatar: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired
+};
