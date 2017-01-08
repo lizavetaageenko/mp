@@ -4,25 +4,29 @@ import { connect } from 'react-redux';
 import './GameHeader.scss';
 
 import Logo from '../../common/components/Logo';
+import Player from '../../players/player/Player';
 
-const GameHeader = ({ username }) => (
+const GameHeader = ({ userData }) => (
     <div className="game-header">
         <Logo />
 
-        <div className="player-name">{username}</div>
+        <Player
+            username={userData.username}
+            avatar={userData.avatar}
+        />
     </div>
 );
 
 GameHeader.defaultProps = {
-    username: ''
+    userData: {}
 };
 
 GameHeader.propTypes = {
-    username: React.PropTypes.string
+    userData: React.PropTypes.object
 };
 
 export default connect(
     (state) => ({
-        username: state.players.currentPlayer.username
+        userData: state.players.currentPlayer
     })
 )(GameHeader);

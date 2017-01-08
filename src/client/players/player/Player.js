@@ -1,20 +1,58 @@
 import React from 'react';
 
+import heads from '../player-avatar/face-parts/heads';
+import eyes from '../player-avatar/face-parts/eyes';
+import smiles from '../player-avatar/face-parts/smiles';
+
 import './Player.scss';
 
-const Player = ({ name }) => (
-    <div className="player">
-        <div className="player-image" />
-        <div className="player-name">{name}</div>
-    </div>
-);
+export default class Player extends React.Component {
+    componentDidMount() {
+        this.drawOnCanvas(this.props.avatar);
+    }
+
+    drawOnCanvas({ head, eye, smile }) {
+        this.canvasContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        heads[head](this.canvas, this.canvasContext);
+        eyes[eye](this.canvas, this.canvasContext);
+        smiles[smile](this.canvas, this.canvasContext);
+    }
+
+    render() {
+        return (
+            <div className="player">
+                <div className="player-image">
+                    <canvas
+                        className="player__canvas"
+                        width="60"
+                        height="60"
+                        ref={(canvas) => {
+                            if (!canvas) {
+                                return;
+                            }
+
+                            this.canvas = canvas;
+                            this.canvasContext = canvas.getContext('2d');
+                        }}
+                    />
+                </div>
+                <div className="player-name">{this.props.username}</div>
+            </div>
+        );
+    }
+}
 
 Player.propTypes = {
-    name: React.PropTypes.string
+    username: React.PropTypes.string,
+    avatar: React.PropTypes.object,
 };
 
 Player.defaultProps = {
-    name: ''
+    username: '',
+    avatar: {
+        head: 0,
+        eye: 0,
+        smile: 0
+    }
 };
-
-export default Player;

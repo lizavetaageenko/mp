@@ -36,6 +36,16 @@ const GameSchema = new Schema({
     }
 });
 
+GameSchema.options.toJSON = GameSchema.options.toObject = {
+    transform: (doc, ret) => {
+        delete ret.__v;  // eslint-disable-line no-underscore-dangle
+        delete ret._id;  // eslint-disable-line no-underscore-dangle
+        ret.id = doc._id.toString();  // eslint-disable-line no-underscore-dangle
+
+        return ret;
+    }
+};
+
 const GameModel = mongoose.model('Game', GameSchema);
 
 module.exports = GameModel;

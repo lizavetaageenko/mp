@@ -5,6 +5,7 @@ import './NewGame.scss';
 
 import Button from '../../common/components/Button';
 import GameHeader from '../game-header/GameHeader';
+import PlayersList from '../../players/players-list/PlayersList';
 
 import { createQCCode } from '../gameActions';
 
@@ -32,9 +33,7 @@ const NewGame = (props) => (
                 </div>
             </div>
 
-            <div className="sidebar new-game-page__players">
-                <img className="new-game-page__qr-code" src={props.QRCode} alt="QR Code" />
-            </div>
+            <PlayersList />
         </div>
     </div>
 );

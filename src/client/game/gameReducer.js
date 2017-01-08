@@ -9,11 +9,7 @@ const defaultGameState = {
 export default function (state = defaultGameState, action) {
     switch (action.type) {
         case HANDLE_GAME_CREATED: {
-            return Object.assign({}, state, {
-                // eslint-disable-next-line no-underscore-dangle
-                id: action.game._id,
-                status: action.game.status
-            });
+            return Object.assign({}, state, action.game);
         }
 
         case CREATE_QR_CODE: {

@@ -14,8 +14,7 @@ function createNewPlayer(socket, userData) {
     return newPlayer
         .save()
         .then((player) => {
-            // eslint-disable-next-line no-underscore-dangle
-            socket.handshake.session.playerId = player._id;
+            socket.handshake.session.playerId = player.id;
             socket.handshake.session.save();
 
             return player;

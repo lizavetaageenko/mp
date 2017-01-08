@@ -1,29 +1,39 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import './PlayersList.scss';
 
 import Player from '../player/Player';
 
-const PlayersList = ({ players }) => (
+const PlayersList = ({ players, currentPlayerId }) => (
     <div className="players-list">
-        {players.map((player) => (
-            <Player key={player.id} name={player.name} />
-        ))}
+        {
+            players
+                .filter((player) => (
+                    player.id !== currentPlayerId
+                ))
+                .map((player) => (
+                    <Player key={player.id} username={player.username} avatar={player.avatar} />
+                ))
+        }
     </div>
 );
 
 PlayersList.propTypes = {
-    players: React.PropTypes.array
+    players: React.PropTypes.array,
+    currentPlayerId: React.PropTypes.string
 };
+
 
 PlayersList.defaultProps = {
-    players: [
-        { id: '1', name: 'Liza 1' },
-        { id: '2', name: 'Liza 2' },
-        { id: '3', name: 'Liza 3' },
-        { id: '4', name: 'Liza 4' },
-        { id: '5', name: 'Liza 5' }
-    ]
+    players: [],
+    currentPlayerId: null
 };
 
-export default PlayersList;
+export default connect(
+    (state) => ({
+        players: state.players.allPlayers,
+        currentPlayerId: state.players.currentPlayer.id
+    })
+)(PlayersList);
+

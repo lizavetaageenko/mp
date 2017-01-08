@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { SET_CURRENT_PLAYER } from './playersActions';
+import { SET_CURRENT_PLAYER, HANDLE_NEW_PLAYERS } from './playersActions';
 
 const defaultCurrentPlayer = {
     id: null,
@@ -20,11 +20,19 @@ function currentPlayerReducer(state = defaultCurrentPlayer, action) {
     }
 }
 
-function playersReducer(state = []) {
-    return state;
+function playersReducer(state = [], action) {
+    switch (action.type) {
+        case HANDLE_NEW_PLAYERS: {
+            return action.players;
+        }
+
+        default: {
+            return state;
+        }
+    }
 }
 
 export default combineReducers({
     currentPlayer: currentPlayerReducer,
-    players: playersReducer
+    allPlayers: playersReducer
 });

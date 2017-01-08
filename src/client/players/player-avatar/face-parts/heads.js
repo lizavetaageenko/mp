@@ -28,8 +28,8 @@ export default [
 
         context.moveTo(width * 0.1, height * 0.1);
         context.lineTo(width * 0.9, height * 0.1);
-        context.lineTo(width * 0.65, height * 0.8);
-        context.lineTo(width * 0.35, height * 0.8);
+        context.lineTo(width * 0.7, height * 0.9);
+        context.lineTo(width * 0.3, height * 0.9);
         context.closePath();
         context.stroke();
     }
